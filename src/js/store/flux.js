@@ -26,8 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => console.log(data))
 					.catch(err => console.log("There was the following error: ", err));
 			},
-			deleteTask: task => {
-				var updatedTaskList = getStore().taskList.concat({ label: task, done: false });
+			deleteTask: ind => {
+				var updatedTaskList = getStore().taskList.filter((task, i) => i != ind);
 				setStore({ taskList: updatedTaskList });
 				fetch("https://assets.breatheco.de/apis/fake/todos/user/georgi_todolist", {
 					method: "PUT",
