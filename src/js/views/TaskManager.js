@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
-import GlobalState from "../store/appContext";
+import { GlobalState } from "../store/appContext";
 
 export const TaskManager = () => {
 	const [task, setTask] = useState("");
