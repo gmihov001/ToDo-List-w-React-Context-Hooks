@@ -8,10 +8,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			loadFetchData: () => {
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/georgi_todolist")
+					.then(response => response.json())
+					.then(data => setStore({ taskList: data }))
+					.catch(err => console.log("There was the following error: ", err));
 			},
 			changeColor: (index, color) => {
 				//get the store
