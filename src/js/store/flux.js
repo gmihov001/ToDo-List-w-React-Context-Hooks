@@ -23,15 +23,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(updatedTaskList)
 				})
 					.then(response => response.json())
-					.then(data => setStore({ taskList: data }))
+					.then(data => console.log(data))
+					.catch(err => console.log("There was the following error: ", err));
+			},
+			deleteTask: task => {
+				var updatedTaskList = getStore().taskList.concat({ label: task, done: false });
+				setStore({ taskList: updatedTaskList });
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/georgi_todolist", {
+					method: "PUT",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(updatedTaskList)
+				})
+					.then(response => response.json())
+					.then(data => console.log(data))
 					.catch(err => console.log("There was the following error: ", err));
 			},
 			changeColor: (index, color) => {
-				//get the store
 				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
 				const demo = store.demo.map((elm, i) => {
 					if (i === index) elm.background = color;
 					return elm;
