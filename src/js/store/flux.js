@@ -14,6 +14,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ taskList: data }))
 					.catch(err => console.log("There was the following error: ", err));
 			},
+			addTask: task => {
+				var updatedTaskList = getStore().taskList.concat({ label: task, done: false });
+				setStore({ taskList: updatedTaskList });
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/georgi_todolist", {
+					method: "PUT",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(updatedTaskList)
+				})
+					.then(response => response.json())
+					.then(data => setStore({ taskList: data }))
+					.catch(err => console.log("There was the following error: ", err));
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

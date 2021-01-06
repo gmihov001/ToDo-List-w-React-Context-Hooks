@@ -16,14 +16,21 @@ export const TaskManager = () => {
 					value={task}
 					onChange={e => setTask(e.target.value)}
 					onKeyUp={e => {
-						if (e.keyCode == 13) actions.addTask(task);
+						if (e.keyCode == 13) {
+							actions.addTask(task);
+							setTask("");
+						}
 					}}
 				/>
 			</div>
 			<div className="taskList">
 				<ul>
 					{store.taskList.map((task, i) => {
-						return <li key={i}>{task.label}</li>;
+						return (
+							<li key={i} className="">
+								{task.label} <span>Done</span> <span>Delete</span>
+							</li>
+						);
 					})}
 				</ul>
 			</div>
