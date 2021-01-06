@@ -23,7 +23,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(updatedTaskList)
 				})
 					.then(response => response.json())
-					.then(data => console.log(data))
+					.then(jsonified => {
+						console.log(jsonified);
+						fetch("https://assets.breatheco.de/apis/fake/todos/user/georgi_todolist")
+							.then(response => response.json())
+							.then(data => setMyList(data))
+							.catch(err => console.log("There was the following error: ", err));
+					})
 					.catch(err => console.log("There was the following error: ", err));
 			},
 			deleteTask: ind => {
@@ -35,7 +41,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(updatedTaskList)
 				})
 					.then(response => response.json())
-					.then(data => console.log(data))
+					.then(jsonified => {
+						console.log(jsonified);
+						fetch("https://assets.breatheco.de/apis/fake/todos/user/georgi_todolist")
+							.then(response => response.json())
+							.then(data => setMyList(data))
+							.catch(err => console.log("There was the following error: ", err));
+					})
 					.catch(err => console.log("There was the following error: ", err));
 			},
 			changeColor: (index, color) => {

@@ -28,7 +28,7 @@ export const TaskManager = () => {
 					{store.taskList.map((task, i) => {
 						return (
 							<li key={i} className="">
-								{task.label} <span>Done</span> <span>Delete</span>
+								{task.label} <span>Done</span> <span onClick={() => actions.deleteTask(i)}>Delete</span>
 							</li>
 						);
 					})}
